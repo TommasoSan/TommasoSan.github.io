@@ -95,20 +95,51 @@ section {
   color: #666;
 }
 
-/* The "abstract" button looks like a link */
-.abstract-toggle {
-  font: inherit;
-  color: inherit;
+/* Two columns: the text on the left, the buttons on the right.
+   On narrow screens the buttons move above the text instead. */
+.paper-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.25rem 1rem;
+  align-items: start;
+}
+
+.paper-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+}
+
+.paper-actions a,
+.abstract-toggle,
+.cv-button {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 0.5rem;
+  border: 1px solid #2593C5;
+  border-radius: 4px;
   background: none;
-  border: none;
-  padding: 0;
+  color: #174489;
+  font: inherit;
+  line-height: 1.5;
   cursor: pointer;
 }
 
-.abstract-toggle:hover {
-  text-decoration: underline;
-  text-decoration-color: #2593C5;
-  text-decoration-thickness: 2px;
+.paper-actions a:hover,
+.abstract-toggle:hover,
+.cv-button:hover {
+  background: #eaf4fa;
+  text-decoration: none;
+}
+
+.cv-button {
+  font-size: 0.8rem;
+}
+
+.authors {
+  margin: 0;
 }
 
 .abstract p {
@@ -135,5 +166,17 @@ footer {
     width: 140px;
     height: 140px;
     margin: 0 auto 1rem;
+  }
+}
+
+/* Below this width the buttons go above the text, as a header row */
+@media (max-width: 700px) {
+  .paper-row {
+    grid-template-columns: 1fr;
+  }
+
+  .paper-actions {
+    order: -1;
+    justify-content: flex-start;
   }
 }
